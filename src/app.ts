@@ -1,4 +1,5 @@
 import  Fastify  from "fastify";
+import userRoute from "./modules/user/user.route";
 
 
 
@@ -7,6 +8,10 @@ import  Fastify  from "fastify";
 
 
 const server = Fastify()
+
+server.register(userRoute, {
+    prefix: 'api/users'
+})
 
 server.get('/healthcheck', async function (){
     return {
