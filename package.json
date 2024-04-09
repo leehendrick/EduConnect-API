@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only --exit-child src/app.ts"
+  },
   "dependencies": {
     "@fastify/jwt": "^5.0.0",
     "@prisma/client": "^5.12.1",
