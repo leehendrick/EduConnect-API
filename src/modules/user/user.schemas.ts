@@ -13,25 +13,24 @@ const createUserSchema = z.object({
         invalid_type_error: 'Telefone must be a number',
     }),
     senha: z.string({
-        required_error: 'Email is required',
+        required_error: 'Senha is required',
         invalid_type_error: 'Senha must be a number',
     }),
     genero: z.string({
-        invalid_type_error: 'Senha must be a string',
+        invalid_type_error: 'Género must be a string',
     }),
     user_typsId: z.number({
         required_error: 'userType is required',
         invalid_type_error: 'userType must be a number',
     }),
-    statusId: z.number({
+    user_statusId: z.number({
         required_error: 'Status is required',
         invalid_type_error: 'Status must be a number',
     }),
-    addressId: z.number({
+    addressesId: z.number({
         required_error: 'Address is required',
         invalid_type_error: 'Address must be a number',
     }),
 });
-
 
 export type CreateUserInput = z.infer<typeof createUserSchema>
