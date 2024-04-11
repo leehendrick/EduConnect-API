@@ -14,7 +14,7 @@ const createUserSchema = z.object({
     }),
     senha: z.string({
         required_error: 'Senha is required',
-        invalid_type_error: 'Senha must be a number',
+        invalid_type_error: 'Senha must be a string',
     }),
     genero: z.string({
         invalid_type_error: 'Género must be a string',
