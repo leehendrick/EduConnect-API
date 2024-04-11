@@ -1,13 +1,13 @@
 import  Fastify  from "fastify";
 import userRoute from "./modules/user/user.route";
-
-
-
-
-
+import { userSchemas } from "./modules/user/user.schemas";
 
 
 const server = Fastify()
+
+for (const schema of userSchemas){
+    server.addSchema(schema);
+}
 
 server.register(userRoute, {
     prefix: 'api/users'
