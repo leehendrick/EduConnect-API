@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import {loginHandler, registerUser} from "./user.controller";
 import { $ref } from "./user.schemas";
+import {findUsers} from "./user.service";
 
 async function userRoute(server: FastifyInstance){
     server.post(
@@ -25,6 +26,8 @@ async function userRoute(server: FastifyInstance){
             }
         },
         loginHandler)
+
+    server.get('/list', findUsers)
 }
 
 export default userRoute
