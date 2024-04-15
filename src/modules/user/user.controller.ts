@@ -1,6 +1,8 @@
 import {FastifyReply, FastifyRequest} from "fastify";
 import {createUser, findUserByEmail} from "./user.service";
 import {CreateUserInput, LoginInput} from "./user.schemas";
+import {verifyPassword} from "../../utils/hash";
+import {server} from "../../app";
 
 export async function registerUser(
         request: FastifyRequest<{
@@ -38,4 +40,15 @@ export async function loginHandler(
                 message: "Invalid email or password",
             })
         }
+
+        const correctPassword = await verifyPassword(body.senha, user.senha)
+
+        if (correctPassword){
+            const {senha, ...rest} = user
+            return { accessToken: server.jwt.sign(rest) }
+        }
+
+    return reply.code(401).send({
+        message: "Invalid email or password",
+    })
 }
