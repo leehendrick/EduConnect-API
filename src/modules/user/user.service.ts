@@ -27,5 +27,17 @@ export async function findUserByEmail(email: string){
 }
 
 export async function findUsers(){
-    return prisma.users.findMany();
+    return prisma.users.findMany({
+        select: {
+            id: true,
+            nome: true,
+            email: true,
+            telefone: true,
+            genero: true,
+            data_registro: true,
+            user_typsId: true,
+            user_statusId: true,
+            addressesId: true
+        }
+    });
 }
