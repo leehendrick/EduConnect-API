@@ -4,7 +4,7 @@ import { userSchemas } from "./modules/user/user.schemas";
 import fJwt from "@fastify/jwt";
 
 
-const server = Fastify()
+export const server = Fastify()
 
 for (const schema of userSchemas){
     server.addSchema(schema);
