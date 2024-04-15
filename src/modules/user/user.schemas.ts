@@ -37,6 +37,7 @@ const createUserSchema = z.object({
 });
 
 const createUserResponseSchema = z.object({
+    id: z.number(),
     nome: z.string({
         required_error: 'Nome is required',
         invalid_type_error: 'Nome must be a string',
