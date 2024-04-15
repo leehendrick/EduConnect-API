@@ -1,8 +1,19 @@
 import prisma from "../../utils/prisma";
 import {CreateUserInput} from "./user.schemas";
+import {hashPassword} from "../../utils/hash";
 
 export async function createUser(input: CreateUserInput) {
+
+    const {senha, ...rest} = input;
+
+    // @ts-ignore
+    const  password  = await hashPassword(senha);
+    console.log(password);
+    //inputWithHash.senha = await hashPassword(input.senha);
+
     const user = await prisma.users.create({
-        data: input,
+        data: {...rest, senha: password}
     })
+
+    return user;
 }
