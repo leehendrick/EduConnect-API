@@ -1,5 +1,4 @@
 import {FastifyReply, FastifyRequest} from "fastify";
-import * as repl from "repl";
 import {createUser} from "./user.service";
 import {CreateUserInput, LoginInput} from "./user.schemas";
 
