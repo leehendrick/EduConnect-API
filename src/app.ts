@@ -6,6 +6,12 @@ import fJwt from "@fastify/jwt";
 
 export const server = Fastify()
 
+declare module "fastify" {
+    export  interface  FastifyInstance {
+        auth: any;
+    }
+}
+
 for (const schema of userSchemas){
     server.addSchema(schema);
 }
