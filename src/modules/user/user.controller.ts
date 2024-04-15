@@ -1,7 +1,7 @@
 import {FastifyReply, FastifyRequest} from "fastify";
 import * as repl from "repl";
 import {createUser} from "./user.service";
-import {CreateUserInput} from "./user.schemas";
+import {CreateUserInput, LoginInput} from "./user.schemas";
 
 export async function registerUser(
         request: FastifyRequest<{
@@ -22,4 +22,13 @@ export async function registerUser(
         console.log(e);
         return reply.code(500).send(e)
     }
+}
+
+export async function loginHandler(
+        request: FastifyRequest<{
+            Body: LoginInput
+        }>,
+        reply:FastifyReply
+    ){
+        const body = request.body
 }
