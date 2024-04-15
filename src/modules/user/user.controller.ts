@@ -1,5 +1,5 @@
 import {FastifyReply, FastifyRequest} from "fastify";
-import {createUser} from "./user.service";
+import {createUser, findUserByEmail} from "./user.service";
 import {CreateUserInput, LoginInput} from "./user.schemas";
 
 export async function registerUser(
@@ -30,4 +30,12 @@ export async function loginHandler(
         reply:FastifyReply
     ){
         const body = request.body
+
+        const user = await findUserByEmail(body.email)
+
+        if (!user) {
+            return reply.code(401).send({
+                message: "Invalid email or password",
+            })
+        }
 }
