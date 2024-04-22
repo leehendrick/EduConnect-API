@@ -2,9 +2,11 @@ import Fastify, {FastifyReply, FastifyRequest} from "fastify";
 import userRoute from "./modules/user/user.route";
 import { userSchemas } from "./modules/user/user.schemas";
 import fJwt from "@fastify/jwt";
+import dotenv from "dotenv";
 
 
 export const server = Fastify()
+dotenv.config();
 
 // Estende o objeto FastifyInstance para incluir uma propriedade 'auth'
 declare module "fastify" {
