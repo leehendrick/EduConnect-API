@@ -34,38 +34,38 @@ model addresses {
 }
 
 model users {
-  id              Int               @id @default(autoincrement())
-  nome            String            @unique
-  email           String            @unique
+  id              Int                @id @default(autoincrement())
+  nome            String             @unique
+  email           String             @unique
   telefone        Int?
   senha           String
   genero          String?
-  data_registro   DateTime          @default(now())
-  type            user_typs         @relation(fields: [user_typsId], references: [id])
+  data_registro   DateTime           @default(now())
+  type            user_typs          @relation(fields: [user_typsId], references: [id])
   user_typsId     Int
-  status          user_status       @relation(fields: [user_statusId], references: [id])
+  status          user_status        @relation(fields: [user_statusId], references: [id])
   user_statusId   Int
-  address         addresses         @relation(fields: [addressesId], references: [id])
+  address         addresses          @relation(fields: [addressesId], references: [id])
   addressesId     Int
-  inscricao_aluno inscricao_aluno[]
+  inscricao_aluno inscricao_alunos[]
 }
 
 model cursos {
-  id              Int               @id @default(autoincrement())
-  nome            String            @unique
+  id              Int                @id @default(autoincrement())
+  nome            String             @unique
   status          String
   descricao       String?
   requisitos      String?
-  inscricao_aluno inscricao_aluno[]
+  inscricao_aluno inscricao_alunos[]
 }
 
 model inscricao_status {
-  id              Int               @id @default(autoincrement())
+  id              Int                @id @default(autoincrement())
   nome            String
-  inscricao_aluno inscricao_aluno[]
+  inscricao_aluno inscricao_alunos[]
 }
 
-model inscricao_aluno {
+model inscricao_alunos {
   id              Int              @id @default(autoincrement())
   nome            String
   bi              String
