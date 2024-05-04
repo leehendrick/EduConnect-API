@@ -22,8 +22,9 @@ for (const schema of userSchemas){
 
 
 // Registra o plugin 'fJwt' para autenticação via JWT
+// @ts-ignore
 server.register(fJwt, {
-    secret: 'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJFZHVDb25uZWN0LUFQSSIsIlVzZXJuYW1lIjoibGVlIiwiZXhwIjoxNzEzMjc1MDE4LCJpYXQiOjE3MTMxODg2MTh9.JrxgEu_hMoC7iwM__A6u3F1C9Hhd0ngA3BDsvQFGeus'
+    secret: process.env.JWT_SECRET,
 })
 
 // Define um decorador 'auth' para verificar tokens JWT nas requisições
