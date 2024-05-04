@@ -28,9 +28,7 @@ async function userRoute(server: FastifyInstance){
         loginHandler)
 
     server.get('/list', {
-        preHandler: [
-            server.auth,
-        ]
+
     }, findUsers)
 }
 
