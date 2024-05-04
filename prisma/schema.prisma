@@ -86,20 +86,21 @@ model inscricao_alunos {
 }
 
 model alunos {
-  id            Int         @id @default(autoincrement())
-  nome          String      @unique
-  email         String?     @unique
-  senha         String
-  matricula     String      @unique
-  classe        String
-  turma         String
-  sala          Int
-  curso         cursos      @relation(fields: [cursosId], references: [id])
-  status        user_status @relation(fields: [user_statusId], references: [id])
-  user_statusId Int
-  type          user_typs   @relation(fields: [user_typsId], references: [id])
-  user_typsId   Int
-  encarregado   users       @relation(fields: [usersId], references: [id])
-  usersId       Int
-  cursosId      Int
+  id              Int         @id @default(autoincrement())
+  nome            String      @unique
+  email           String?     @unique
+  senha           String
+  matricula       String      @unique
+  classe          String
+  turma           String
+  sala            Int
+  data_nascimento DateTime
+  curso           cursos      @relation(fields: [cursosId], references: [id])
+  status          user_status @relation(fields: [user_statusId], references: [id])
+  user_statusId   Int
+  type            user_typs   @relation(fields: [user_typsId], references: [id])
+  user_typsId     Int
+  encarregado     users       @relation(fields: [usersId], references: [id])
+  usersId         Int
+  cursosId        Int
 }
