@@ -83,24 +83,51 @@ model inscricao_alunos {
   data_inscricao  DateTime         @default(now())
   encarregadoId   Int
   statusId        Int
+  createdAt       DateTime         @default(now())
 }
 
 model alunos {
-  id              Int         @id @default(autoincrement())
-  nome            String      @unique
-  email           String?     @unique
+  id              Int            @id @default(autoincrement())
+  nome            String         @unique
+  email           String?        @unique
   senha           String
-  matricula       String      @unique
+  matricula       String         @unique
   classe          String
   turma           String
   sala            Int
   data_nascimento DateTime
-  curso           cursos      @relation(fields: [cursosId], references: [id])
-  status          user_status @relation(fields: [user_statusId], references: [id])
+  curso           cursos         @relation(fields: [cursosId], references: [id])
+  status          user_status    @relation(fields: [user_statusId], references: [id])
   user_statusId   Int
-  type            user_typs   @relation(fields: [user_typsId], references: [id])
+  type            user_typs      @relation(fields: [user_typsId], references: [id])
   user_typsId     Int
-  encarregado     users       @relation(fields: [usersId], references: [id])
+  encarregado     users          @relation(fields: [usersId], references: [id])
   usersId         Int
   cursosId        Int
+  createdAt       DateTime       @default(now())
+  notas_alunos    notas_alunos[]
+}
+
+model disciplinas {
+  id           Int            @id @default(autoincrement())
+  nome         String
+  createdAt    DateTime       @default(now())
+  notas_alunos notas_alunos[]
+}
+
+model trimestres {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  createdAt DateTime @default(now())
+}
+
+model notas_alunos {
+  Id            Int         @id @default(autoincrement())
+  aluno         alunos      @relation(fields: [alunosId], references: [id])
+  disciplinas   disciplinas @relation(fields: [disciplinasId], references: [id])
+  disciplinasId Int
+  media         Int
+  mediaTotal    Int
+  createdAt     DateTime    @default(now())
+  alunosId      Int
 }
