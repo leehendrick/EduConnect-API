@@ -14,15 +14,17 @@ datasource db {
 }
 
 model user_typs {
-  id    Int     @id @default(autoincrement())
-  type  String
-  users users[]
+  id     Int      @id @default(autoincrement())
+  type   String
+  users  users[]
+  alunos alunos[]
 }
 
 model user_status {
-  id     Int     @id @default(autoincrement())
+  id     Int      @id @default(autoincrement())
   status String
   users  users[]
+  alunos alunos[]
 }
 
 model addresses {
@@ -48,6 +50,7 @@ model users {
   address         addresses          @relation(fields: [addressesId], references: [id])
   addressesId     Int
   inscricao_aluno inscricao_alunos[]
+  alunos          alunos[]
 }
 
 model cursos {
@@ -57,6 +60,7 @@ model cursos {
   descricao       String?
   requisitos      String?
   inscricao_aluno inscricao_alunos[]
+  alunos          alunos[]
 }
 
 model inscricao_status {
@@ -79,4 +83,23 @@ model inscricao_alunos {
   data_inscricao  DateTime         @default(now())
   encarregadoId   Int
   statusId        Int
+}
+
+model alunos {
+  id            Int         @id @default(autoincrement())
+  nome          String      @unique
+  email         String?     @unique
+  senha         String
+  matricula     String      @unique
+  classe        String
+  turma         String
+  sala          Int
+  curso         cursos      @relation(fields: [cursosId], references: [id])
+  status        user_status @relation(fields: [user_statusId], references: [id])
+  user_statusId Int
+  type          user_typs   @relation(fields: [user_typsId], references: [id])
+  user_typsId   Int
+  encarregado   users       @relation(fields: [usersId], references: [id])
+  usersId       Int
+  cursosId      Int
 }
