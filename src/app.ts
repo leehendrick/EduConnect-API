@@ -39,6 +39,12 @@ server.decorate(
         }
 })
 
+// Registra o plugin 'cors' para permitir solicitações de 'localhost:3000'
+server.register(cors, {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+})
+
 // Registra as rotas de usuário com um prefixo '/api/users'
 server.register(userRoute, {
     prefix: 'api/users'
