@@ -3,7 +3,7 @@ import userRoute from "./modules/user/user.route";
 import { userSchemas } from "./modules/user/user.schemas";
 import fJwt from "@fastify/jwt";
 import dotenv from "dotenv";
-import cors from  "@fastify/cors"
+import cors from  "@fastify/cors";
 
 
 export const server = Fastify()
